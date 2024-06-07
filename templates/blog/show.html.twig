@@ -9,7 +9,11 @@
             <h2>{{ article.title }}</h2> 
             <div class="metadata">Ecrit le {{ article.createdAt | date('d/m/Y') }} à {{ article.createdAt | date('H:i:s') }} dans la catégorie {{ article.category.title }}</div><hr> 
             <div class="content"> 
-                <img src="{{ article.image }}" alt=""><hr> 
+                {% if article.image %}
+                    <img src="{{ asset('uploads/images/' ~ article.image) }}" alt="{{ article.title }}" class="img-fluid"><hr> 
+                {% else %}
+                    <p>Pas d'image disponible pour cet article.</p><hr>
+                {% endif %}
                 {{ article.content | raw }} 
             </div> 
         </article> 
