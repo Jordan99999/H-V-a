@@ -1,0 +1,9 @@
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute
+
+security_login:
+    path: /connexion
+    controller: App\Controller\SecurityController::login

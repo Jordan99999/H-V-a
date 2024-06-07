@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article{% endblock %}
+
+{% block body %}
+<section class="row articles"> 
+    {% if article is not null %}
+        <article class="col-md-6 mx-auto text-center border border-dark mb-3 p-3 mt-3 mr-1"> 
+            <h2>{{ article.title }}</h2> 
+            <div class="metadata">Ecrit le {{ article.createdAt | date('d/m/Y') }} à {{ article.createdAt | date('H:i:s') }} dans la catégorie {{ article.category.title }}</div><hr> 
+            <div class="content"> 
+                <img src="{{ article.image }}" alt=""><hr> 
+                {{ article.content | raw }} 
+            </div> 
+        </article> 
+    {% else %}
+        <p>L'article n'existe pas.</p>
+    {% endif %}
+</section>
+
+<h2 class="text-center mx-auto m-3">{{ article.comments | length }} Commentaires</h2>
+
+<section id="commentaire" class="col-md-10 mx-auto"> 
+    {% for comment in article.comments %} 
+        <div class="comment"> 
+            <div class="row"> 
+                <div class="col-md-3"> 
+                    {{ comment.author }} (<small>{{ comment.createdAt | date('d/m/Y à H:i:s') }}</small>) 
+                </div> 
+                <div class="col-md-9"> 
+                    {{ comment.content | raw }} 
+                </div> 
+            </div> 
+        </div><hr> 
+    {% endfor %} 
+</section> 
+
+{# Formulaire de commentaire #}
+{{ form_start(commentForm) }}
+    {{ form_row(commentForm.author, {'label': 'Auteur', 'attr': {'placeholder': "Votre nom..."}}) }}
+    {{ form_row(commentForm.content, {'label': 'Votre message', 'attr': {'placeholder': "Saisir votre message..."}}) }}
+    <button type="submit" class="btn btn-primary mb-3">Poster votre commentaire</button>
+{{ form_end(commentForm) }}
+
+{% endblock %}
