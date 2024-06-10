@@ -1,9 +1,35 @@
 controllers:
-    resource:
-        path: ../src/Controller/
-        namespace: App\Controller
+    resource: ../src/Controller/
     type: attribute
 
 security_login:
     path: /connexion
     controller: App\Controller\SecurityController::login
+
+blog_home:
+    path: /
+    controller: App\Controller\BlogController::home
+
+blog_index:
+    path: /blog
+    controller: App\Controller\BlogController::index
+
+blog_create:
+    path: /blog/new
+    controller: App\Controller\BlogController::form
+
+blog_edit:
+    path: /blog/{id}/edit
+    controller: App\Controller\BlogController::form
+    requirements:
+        id: '\d+'
+
+blog_show:
+    path: /blog/{id}
+    controller: App\Controller\BlogController::show
+    requirements:
+        id: '\d+'
+
+blog_contact:
+    path: /blog/contact
+    controller: App\Controller\BlogController::contact

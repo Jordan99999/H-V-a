@@ -1,3 +1,4 @@
+{# templates/blog/show.html.twig #}
 {% extends 'base.html.twig' %}
 
 {% block title %}Article{% endblock %}
@@ -10,7 +11,7 @@
             <div class="metadata">Ecrit le {{ article.createdAt | date('d/m/Y') }} à {{ article.createdAt | date('H:i:s') }} dans la catégorie {{ article.category.title }}</div><hr> 
             <div class="content"> 
                 {% if article.image %}
-                    <img src="{{ asset('uploads/images/' ~ article.image) }}" alt="{{ article.title }}" class="img-fluid"><hr> 
+                    <img src="{{ asset('images/produits/' ~ article.image ) }}" alt="{{ article.title }}" class="img-fluid"><hr> 
                 {% else %}
                     <p>Pas d'image disponible pour cet article.</p><hr>
                 {% endif %}
